@@ -1,17 +1,12 @@
 public class Main {
     public static void main(String[] args) {
 
-        GameObject player = new GameObject("PLAYER", "Hero");
-        GameObject enemy = new GameObject("ENEMY", "Goblin");
-        GameObject item = new GameObject("ITEM", "Potion");
+        GameObject player = GameObjectFactory.createObject("PLAYER", "Hero");
+        GameObject enemy = GameObjectFactory.createObject("ENEMY", "Zombie");
+        GameObject item = GameObjectFactory.createObject("ITEM", "Coin");
 
         player.update();
-        player.render();
-
         enemy.update();
-        enemy.render();
-
         item.update();
-        item.render();
     }
 }
