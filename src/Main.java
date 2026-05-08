@@ -1,12 +1,22 @@
 public class Main {
+
     public static void main(String[] args) {
 
-        GameObject player = GameObjectFactory.createObject("PLAYER", "Hero");
-        GameObject enemy = GameObjectFactory.createObject("ENEMY", "Zombie");
-        GameObject item = GameObjectFactory.createObject("ITEM", "Coin");
+        GameObject obj = new GameObject("PLAYER", "Hero", 100, 20);
 
-        player.update();
-        enemy.update();
-        item.update();
+        GameComponent decorated =
+                new DamageBoostDecorator(
+                        new BasicGameObject(obj)
+                );
+
+        decorated.update();
+        System.out.println(decorated.getInfo());
+
+        LegacyEnemy enemy = new LegacyEnemy();
+
+        GameComponent adapted = new EnemyAdapter(enemy);
+
+        adapted.update();
+        System.out.println(adapted.getInfo());
     }
 }
