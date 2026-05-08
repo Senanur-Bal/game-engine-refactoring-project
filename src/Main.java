@@ -2,21 +2,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GameObject obj = new GameObject("PLAYER", "Hero", 100, 20);
+        System.out.println("===== OBSERVER PATTERN =====");
 
-        GameComponent decorated =
-                new DamageBoostDecorator(
-                        new BasicGameObject(obj)
-                );
+        Player player = new Player();
 
-        decorated.update();
-        System.out.println(decorated.getInfo());
+        HealthUI healthUI = new HealthUI();
+        GameLogger logger = new GameLogger();
 
-        LegacyEnemy enemy = new LegacyEnemy();
+        player.addObserver(healthUI);
+        player.addObserver(logger);
 
-        GameComponent adapted = new EnemyAdapter(enemy);
+        player.setHealth(100);
+        player.setHealth(75);
+        player.setHealth(40);
 
-        adapted.update();
-        System.out.println(adapted.getInfo());
+        System.out.println("\n===== STRATEGY PATTERN =====");
+
+        Enemy enemy = new Enemy();
+
+        enemy.setStrategy(new MeleeAttack());
+        enemy.attack();
+
+        enemy.setStrategy(new RangedAttack());
+        enemy.attack();
     }
 }
