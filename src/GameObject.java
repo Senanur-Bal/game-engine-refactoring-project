@@ -1,4 +1,5 @@
 public class GameObject {
+
     private String type;
     private String name;
     private int health;
@@ -12,10 +13,10 @@ public class GameObject {
     }
 
     public void update() {
-        System.out.println(name + " updated (" + type + ")");
+        System.out.println(name + " updated");
     }
 
-    public void render() {
-        System.out.println("Render: " + name);
+    public String getName() {
+        return name;
     }
 }

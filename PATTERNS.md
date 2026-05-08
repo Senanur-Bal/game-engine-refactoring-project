@@ -1,49 +1,50 @@
-# Design Patterns - Phase 1
+# Design Patterns - Phase 2
 
 ---
 
-## Factory Method Pattern
+## Phase 2 - Decorator Pattern
 
-### 📌 Nedir?
-Factory Method, nesne oluşturma işlemini alt sınıflara veya ayrı bir factory sınıfına devrederek nesne yaratımını merkezileştiren bir tasarım örüntüsüdür.
-
----
-
-### 📍 Nerede kullanıldı?
-
-GameObjectFactory sınıfında PLAYER, ENEMY ve ITEM nesnelerinin oluşturulmasında kullanıldı.
+### Amaç
+Nesnelere çalışma zamanında (runtime) yeni davranış eklemek. Inheritance yerine composition kullanarak daha esnek ve genişletilebilir bir yapı oluşturmak.
 
 ---
 
-### ❗ Önceki Problem
+### Açıklama
+Decorator Pattern, bir GameComponent nesnesini sararak (wrap ederek) onun davranışını genişleten bir yapıdır. Bu projede GameObjectDecorator abstract sınıfı üzerinden DamageBoostDecorator gibi somut decorator’lar kullanılarak oyun nesnelerine dinamik özellikler eklenmiştir.
 
-GameObject sınıfı içinde if-else ile nesne oluşturuluyordu. Bu yapı:
-- SRP (Single Responsibility Principle) ihlal ediyordu
-- Yeni nesne türü eklemeyi zorlaştırıyordu
-- Kodun bakımı ve okunabilirliğini düşürüyordu
+Bu yapı sayesinde temel sınıflar değiştirilmeden yeni özellikler sisteme dahil edilebilmiştir.
 
 ---
 
-### 🏗 Neden kullanıldı?
-
-Nesne oluşturma sorumluluğunu ayrı bir sınıfa taşıyarak:
-- Kodun daha modüler hale gelmesi
-- Açık/Kapalı Prensibi’nin (OCP) sağlanması
-- Sistem genişletilebilirliğinin artırılması hedeflendi
-
----
-
-### 🎯 Ne kazandım?
-
-- ✔ Nesne oluşturma merkezi hale getirildi
-- ✔ GameObject sınıfı sadeleşti
-- ✔ SRP ihlali azaltıldı
-- ✔ OCP’ye daha uygun hale getirildi
-- ✔ Yeni nesne türü eklemek kolaylaştı
-- ✔ Kod daha okunabilir ve bakımı kolay hale geldi
+### Neden Kullanıldı?
+- Inheritance yerine daha esnek yapı sağlar  
+- Runtime’da davranış eklenebilir  
+- Open/Closed Principle’a uygundur (mevcut kod değiştirilmez, genişletilir)  
+- Kod tekrarını ve karmaşık if-else yapılarını azaltır  
 
 ---
 
-### 📌 Sonuç
+## Phase 2 - Adapter Pattern
 
-Factory Method pattern kullanılarak nesne oluşturma süreci merkezi hale getirilmiş ve sistem daha genişletilebilir bir yapıya kavuşmuştur.
+### Amaç
+Uyumsuz sistemleri birbirine uyarlamak.
+
+---
+
+### Açıklama
+Projede bulunan LegacyEnemy sınıfı, mevcut GameComponent mimarisine doğrudan uyumlu değildir. Bu nedenle EnemyAdapter sınıfı kullanılarak legacy yapı yeni sisteme adapte edilmiştir.
+
+Bu sayede eski kod yapısı değiştirilmeden sisteme entegre edilmiştir.
+
+---
+
+### Neden Kullanıldı?
+- Legacy kodu değiştirmeden kullanmak  
+- Eski ve yeni sistem arasında uyumluluk sağlamak  
+- Geriye dönük uyumluluk (backward compatibility)  
+- Sistem mimarisini bozmadan genişletilebilirlik sağlamak  
+
+---
+
+## Sonuç
+Factory, Decorator ve Adapter pattern’leri birlikte kullanılarak esnek, genişletilebilir ve sürdürülebilir bir oyun motoru mimarisi oluşturulmuştur. Sistem, Structural Design Patterns ile modernize edilmiştir.
